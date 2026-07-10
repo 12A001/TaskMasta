@@ -31,9 +31,9 @@ const navItems = [
 </script>
 
 <template>
-  <nav
-    class="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#050B2A]/95 backdrop-blur-md"
-  >
+<nav
+  class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50 border-t border-white/10 bg-[#050B2A]/95 backdrop-blur-md"
+>
     <div class="grid grid-cols-5 h-16">
       <RouterLink
         v-for="item in navItems"
