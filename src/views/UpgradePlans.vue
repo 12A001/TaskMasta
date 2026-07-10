@@ -70,13 +70,20 @@
           Owned
         </button>
 
-        <button
-          v-else-if="canUpgradeTo('starter')"
-          @click="selectPlan('starter')"
-          class="w-full mt-3 bg-green-600 py-2 rounded-xl"
-        >
-          Upgrade to Starter
-        </button>
+<button
+  v-else-if="canUpgradeTo('starter')"
+  @click="selectPlan('starter')"
+  :disabled="loadingPlan === 'starter'"
+  class="w-full mt-3 bg-green-600 py-2 rounded-xl disabled:opacity-50"
+>
+  <span v-if="loadingPlan === 'starter'">
+    Processing...
+  </span>
+
+  <span v-else>
+    Upgrade to Starter
+  </span>
+</button>
       </div>
 
       <!-- BRONZE -->
@@ -102,13 +109,20 @@
           Owned
         </button>
 
-        <button
-          v-else-if="canUpgradeTo('bronze')"
-          @click="selectPlan('bronze')"
-          class="w-full mt-3 bg-orange-600 py-2 rounded-xl"
-        >
-          Upgrade to Bronze
-        </button>
+<button
+  v-else-if="canUpgradeTo('bronze')"
+  @click="selectPlan('bronze')"
+  :disabled="loadingPlan === 'bronze'"
+  class="w-full mt-3 bg-orange-600 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
+>
+  <span v-if="loadingPlan === 'bronze'">
+    Processing...
+  </span>
+
+  <span v-else>
+    Upgrade to Bronze
+  </span>
+</button>
       </div>
 
       <!-- SILVER -->
@@ -134,13 +148,20 @@
           Owned
         </button>
 
-        <button
-          v-else-if="canUpgradeTo('silver')"
-          @click="selectPlan('silver')"
-          class="w-full mt-3 bg-gray-500 py-2 rounded-xl"
-        >
-          Upgrade to Silver
-        </button>
+<button
+  v-else-if="canUpgradeTo('silver')"
+  @click="selectPlan('silver')"
+  :disabled="loadingPlan === 'silver'"
+  class="w-full mt-3 bg-gray-500 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
+>
+  <span v-if="loadingPlan === 'silver'">
+    Processing...
+  </span>
+
+  <span v-else>
+    Upgrade to Silver
+  </span>
+</button>
       </div>
 
       <!-- GOLD -->
@@ -166,13 +187,20 @@
           Owned
         </button>
 
-        <button
-          v-else-if="canUpgradeTo('gold')"
-          @click="selectPlan('gold')"
-          class="w-full mt-3 bg-yellow-600 py-2 rounded-xl"
-        >
-          Upgrade to Gold
-        </button>
+<button
+  v-else-if="canUpgradeTo('gold')"
+  @click="selectPlan('gold')"
+  :disabled="loadingPlan === 'gold'"
+  class="w-full mt-3 bg-yellow-600 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
+>
+  <span v-if="loadingPlan === 'gold'">
+    Processing...
+  </span>
+
+  <span v-else>
+    Upgrade to Gold
+  </span>
+</button>
       </div>
 
       <!-- PLATINUM -->
@@ -198,13 +226,20 @@
           Owned
         </button>
 
-        <button
-          v-else-if="canUpgradeTo('platinum')"
-          @click="selectPlan('platinum')"
-          class="w-full mt-3 bg-cyan-600 py-2 rounded-xl"
-        >
-          Upgrade to Platinum
-        </button>
+<button
+  v-else-if="canUpgradeTo('platinum')"
+  @click="selectPlan('platinum')"
+  :disabled="loadingPlan === 'platinum'"
+  class="w-full mt-3 bg-cyan-600 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
+>
+  <span v-if="loadingPlan === 'platinum'">
+    Processing...
+  </span>
+
+  <span v-else>
+    Upgrade to Platinum
+  </span>
+</button>
       </div>
 
       <!-- DIAMOND -->
@@ -233,10 +268,18 @@
         <button
           v-else-if="canUpgradeTo('diamond')"
           @click="selectPlan('diamond')"
-          class="w-full mt-3 bg-blue-600 py-2 rounded-xl"
+          :disabled="loadingPlan === 'diamond'"
+          class="w-full mt-3 bg-blue-600 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
-          Upgrade to Diamond
+          <span v-if="loadingPlan === 'diamond'">
+            Processing...
+          </span>
+
+          <span v-else>
+            Upgrade to Diamond
+          </span>
         </button>
+
       </div>
 
       <!-- ELITE -->
@@ -266,9 +309,16 @@
         <button
           v-else-if="canUpgradeTo('elite')"
           @click="selectPlan('elite')"
-          class="w-full mt-3 bg-purple-600 py-2 rounded-xl"
+          :disabled="loadingPlan === 'elite'"
+          class="w-full mt-3 bg-purple-600 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
-          Upgrade to Elite
+          <span v-if="loadingPlan === 'elite'">
+            Processing...
+          </span>
+
+          <span v-else>
+            Upgrade to Elite
+          </span>
         </button>
       </div>
 
@@ -293,6 +343,7 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const message = ref('')
+const loadingPlan = ref(null)
 
 const goBack = () => router.back()
 
@@ -324,22 +375,32 @@ const canSeePlan = (plan) => {
 }
 
 const selectPlan = async (plan) => {
-  message.value = 'Starting payment...'
+  try {
+    loadingPlan.value = plan
+    message.value = 'Starting payment...'
 
-  const res = await authStore.initializeUpgrade(plan)
+    const res = await authStore.initializeUpgrade(plan)
 
-  if (!res.success) {
-    message.value = res.message
-    return
+    if (!res.success) {
+      message.value = res.message
+      loadingPlan.value = null
+      return
+    }
+
+    const url = res.data?.url
+
+    if (!url) {
+      message.value = 'Payment link missing'
+      loadingPlan.value = null
+      return
+    }
+
+    window.location.href = url
+
+  } catch (error) {
+    console.error(error)
+    message.value = 'Payment failed. Try again.'
+    loadingPlan.value = null
   }
-
-  const url = res.data?.url || res.data?.authorization_url
-
-  if (!url) {
-    message.value = 'Payment link missing'
-    return
-  }
-
-  window.location.href = url
 }
 </script>
