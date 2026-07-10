@@ -5,7 +5,7 @@ const input = ref('')
 
 //  CHANGE THIS TO YOUR SUPPORT NUMBER
 // format: country code + number (NO + sign)
-const SUPPORT_PHONE = '+447468651521'
+const SUPPORT_PHONE = '+447468651524'
 
 function sendMessage() {
   if (!input.value.trim()) return
