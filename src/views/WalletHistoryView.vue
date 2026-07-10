@@ -57,10 +57,10 @@ const getIcon = (item) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0B1020] text-white">
+  <div class="min-h-screen bg-[#050B2A] text-white">
 
     <!-- Header -->
-    <div class="sticky top-0 z-10 bg-[#0B1020] px-4 pt-6 pb-4">
+    <div class="sticky top-0 z-10 bg-[#050B2A] px-4 pt-6 pb-4">
 
       <div class="flex items-center gap-3">
 

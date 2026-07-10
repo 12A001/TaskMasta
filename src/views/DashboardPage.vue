@@ -122,7 +122,7 @@ const goUpgrade = () => {
   <div class="min-h-screen bg-[#050B2A] text-white pb-24">
     <!-- HEADER -->
     <div
-      class="sticky top-0 z-50 bg-[#050B2A]/95 backdrop-blur-md border-b border-white/5 px-4 pt-5 pb-3"
+      class="sticky top-0 z-50 bg-[#050B2A] border-b border-white/5 px-4 pt-5 pb-3"
     >
       <div class="p-2 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -390,7 +390,7 @@ const goUpgrade = () => {
   }
 }
 .animate-shine {
-  animation: shine 4s linear infinite;
+  animation: none;
 }
 
 @keyframes sparkle {
@@ -402,7 +402,7 @@ const goUpgrade = () => {
   }
 }
 .animate-sparkle {
-  animation: sparkle 1.2s linear infinite;
+  animation: none;
 }
 
 .tabular-nums {

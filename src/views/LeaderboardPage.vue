@@ -47,7 +47,7 @@ const initials = (name = '') =>
 <template>
   <div class="min-h-screen bg-[#050B2A] text-white px-4 pt-6 pb-10">
     <!-- HEADER -->
-    <div class="sticky top-0 z-50 bg-[#050B2A]/90 backdrop-blur border-b border-white/5 px-2 py-2">
+    <div class="sticky top-0 z-50 bg-[#050B2A] border-b border-white/5 px-2 py-2">
       <div class="flex items-center justify-between">
         <!-- Back Button -->
         <button

@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 html {
- 
-  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
-  background: #0b1020;
+  background: #050B2A;
   color: white;
   font-family: sans-serif;
   margin: 0;
-
+  overflow-x: hidden;
 }

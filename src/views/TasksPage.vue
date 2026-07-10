@@ -61,7 +61,7 @@ const openTask = (id) => {
   <div class="min-h-screen bg-[#050B2A] text-white pb-24">
 
     <!-- HEADER -->
-    <div class="px-4 py-3 sticky top-0 z-50 bg-[#050B2A]/90 backdrop-blur-md border-b border-white/5">
+    <div class="px-4 py-3 sticky top-0 z-50 bg-[#050B2A]/90  border-b border-white/5">
       <h1 class="text-center text-lg font-semibold">
         Daily Tasks
       </h1>

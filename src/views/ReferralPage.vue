@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-[#050B2A] text-white pb-24">
 
     <!-- HEADER -->
-    <div class="sticky top-0 z-50 bg-[#050B2A]/95 backdrop-blur border-b border-white/5 px-4 py-4">
+    <div class="sticky top-0 z-50 bg-[#050B2A]/95  border-b border-white/5 px-4 py-4">
       <h1 class="text-lg font-bold">Referral Rewards</h1>
       <p class="text-xs text-gray-400">
         Invite friends & earn bonuses

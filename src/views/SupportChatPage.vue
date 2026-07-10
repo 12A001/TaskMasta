@@ -22,7 +22,7 @@ function sendMessage() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0B1020] flex flex-col text-white">
+  <div class="min-h-screen bg-[#050B2A] flex flex-col text-white">
 
     <!-- HEADER -->
     <div class="p-4 border-b border-white/10">

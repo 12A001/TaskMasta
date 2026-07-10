@@ -199,10 +199,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-black text-white">
+  <div class="min-h-screen bg-[#050B2A] text-white">
     <!-- TOP BAR -->
     <div
-      class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur px-4 py-3 flex items-center"
+      class="fixed top-0 left-0 right-0 z-50 bg-[#050B2A]  px-4 py-3 flex items-center"
     >
       <button @click="router.back()" class="text-sm text-purple-400">← Back</button>
 

@@ -21,7 +21,7 @@ const markAsRead = (id) => {
 
     <!-- HEADER -->
     <div
-      class="sticky top-0 z-50 bg-[#071028]/95 backdrop-blur-md border-b border-white/5 px-4 py-4"
+      class="sticky top-0 z-50 bg-[#050B2A] border-b border-white/5 px-4 py-4"
     >
       <div class="flex items-center justify-between">
 

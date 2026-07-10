@@ -59,7 +59,7 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0B1020] px-6 pt-10 pb-8">
+  <div class="min-h-screen bg-[#050B2A] px-6 pt-10 pb-8">
     <div class="max-w-md mx-auto">
       <!-- Heading -->
       <div class="mb-8">
