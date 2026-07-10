@@ -12,7 +12,7 @@ state: () => ({
 
   completedTasks: 0,    // 0 → 2 → 4 → 6 → 8 → 10
 
-  completedToday: [],   // ⚠️ kept (backend support still allowed)
+  completedToday: [],   //  kept (backend support still allowed)
   tasks: [],
   featuredTask: null,
   weeklyTaskHistory: [], // For dashboard insights
@@ -35,7 +35,7 @@ getters: {
     state.completedTasks >= state.dailyGoal,
 
   /**
-   * ✅ SAFE TODAY FILTER (NEW FIX)
+   *  SAFE TODAY FILTER (NEW FIX)
    * - Uses backend data if correct
    * - Falls back to local filtering if backend is wrong
    */

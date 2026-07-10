@@ -4,24 +4,66 @@ import { computed } from 'vue'
 const props = defineProps({
   plan: {
     type: String,
-    default: 'normal',
-  },
+    default: 'free'
+  }
 })
 
-const isVerified = computed(() =>
-  ['premium', 'super'].includes(props.plan?.toLowerCase())
-)
+// Only paid plans have badges
+const isVerified = computed(() => props.plan?.toLowerCase() !== 'free')
 
 const badgeColor = computed(() => {
   switch (props.plan?.toLowerCase()) {
-    case 'super':
-      return '#F59E0B' // gold
+    case 'starter':
+      return '#22C55E' // Green
 
-    case 'premium':
-      return '#1877F2' // Facebook blue
+    case 'bronze':
+      return '#B45309' // Bronze
+
+    case 'silver':
+      return '#94A3B8' // Silver
+
+    case 'gold':
+      return '#FACC15' // Gold
+
+    case 'platinum':
+      return '#06B6D4' // Cyan
+
+    case 'diamond':
+      return '#3B82F6' // Blue
+
+    case 'elite':
+      return '#A855F7' // Purple
 
     default:
       return '#64748B'
+  }
+})
+
+const glowColor = computed(() => {
+  switch (props.plan?.toLowerCase()) {
+    case 'starter':
+      return 'rgba(34,197,94,.55)'
+
+    case 'bronze':
+      return 'rgba(180,83,9,.55)'
+
+    case 'silver':
+      return 'rgba(148,163,184,.55)'
+
+    case 'gold':
+      return 'rgba(250,204,21,.6)'
+
+    case 'platinum':
+      return 'rgba(6,182,212,.6)'
+
+    case 'diamond':
+      return 'rgba(59,130,246,.65)'
+
+    case 'elite':
+      return 'rgba(168,85,247,.7)'
+
+    default:
+      return 'rgba(100,116,139,.4)'
   }
 })
 </script>
@@ -31,21 +73,18 @@ const badgeColor = computed(() => {
     v-if="isVerified"
     class="relative inline-flex items-center justify-center"
   >
-    <!-- subtle glow -->
+    <!-- Glow -->
     <div
-      class="absolute inset-0 blur-md opacity-40 animate-pulse"
-      :style="{ color: badgeColor }"
-    >
-      ●
-    </div>
+      class="absolute inset-0 rounded-full blur-md opacity-80 animate-pulse"
+      :style="{ background: glowColor }"
+    />
 
-    <!-- Facebook style badge -->
+    <!-- Badge -->
     <svg
       class="w-5 h-5 relative z-10 animate-badge"
       viewBox="0 0 24 24"
       fill="none"
     >
-      <!-- Facebook-like verification shape -->
       <path
         d="M12 1.8
         L14.1 3.2
@@ -77,7 +116,6 @@ const badgeColor = computed(() => {
         :fill="badgeColor"
       />
 
-      <!-- White check -->
       <path
         d="M10.4 15.6L7.8 13L6.4 14.4L10.4 18.4L17.8 11L16.4 9.6L10.4 15.6Z"
         fill="white"
@@ -89,15 +127,15 @@ const badgeColor = computed(() => {
 <style scoped>
 @keyframes badgeFloat {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0px) scale(1);
   }
 
   50% {
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.05);
   }
 
   100% {
-    transform: translateY(0px);
+    transform: translateY(0px) scale(1);
   }
 }
 
