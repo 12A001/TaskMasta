@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 html {
-  scrollbar-gutter: stable;
+ 
   overflow-y: scroll;
 }
 
@@ -9,6 +9,5 @@ body {
   color: white;
   font-family: sans-serif;
   margin: 0;
-  overflow-x: hidden;
-  overscroll-behavior: none;
+
 }
